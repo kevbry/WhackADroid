@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res/com.siast.whackabot"
+    tools:context=".WhackActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.GridLayout 
+        android:id="@+id/gridLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        app:columnCount="4"
+         >
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot1"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot2"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot3"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot4"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot5"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot6"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot7"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot8"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot9"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot10"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot11"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot12"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot13"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot14"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot15"
+            style="@style/Whackable" />
+
+        <ImageButton
+            android:contentDescription="@string/droid"
+            android:id="@+id/robot16"
+            style="@style/Whackable" />
+
+
+
+    </android.support.v7.widget.GridLayout>
+    
+    <Button
+    android:id="@+id/pause_game"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/reset_game"
+    android:onClick="togglePause"
+    android:text="@string/start" />
+    
+    <Button
+    android:id="@+id/reset_game"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:onClick="resetGame"
+    android:text="@string/reset" />
+    
+   </RelativeLayout>
