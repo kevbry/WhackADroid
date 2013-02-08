@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class WhackActivity extends Activity implements GameContext {
@@ -15,11 +16,14 @@ public class WhackActivity extends Activity implements GameContext {
 	public static final int MAX_ANGRY_DROIDS=5;
 	public static final int INITIAL_TICK_RATE=2000;
 	public static final int DECAY_RATE=10;
+	public static final String SCORE_FORMAT="Score: %d";
 	
 	private boolean is_paused=true;
 	private Handler tickHandler;
 	private GameLogicHandler game_logic;
+	private int num_ticks=0;
 	
+	private TextView score;
 	private Button pause_button;
 	private int current_delay=INITIAL_TICK_RATE;
 	
@@ -29,7 +33,7 @@ public class WhackActivity extends Activity implements GameContext {
 		setContentView(R.layout.activity_whack);
 		
 	
-		
+		this.score = (TextView)this.findViewById(R.id.score);
 		this.pause_button = (Button)this.findViewById(R.id.pause_game);
 		
 		this.tickHandler = new Handler(); //Because Handler is created in the UI thread its runnables will run in the UI thread
@@ -121,6 +125,7 @@ public class WhackActivity extends Activity implements GameContext {
 		this.current_delay = INITIAL_TICK_RATE;
 		this.game_logic.reset();
 		
+		this.num_ticks=0;
 		this.pause_button.setVisibility(View.VISIBLE);
 		this.pause_button.setText(R.string.start);
 	}
@@ -136,11 +141,17 @@ public class WhackActivity extends Activity implements GameContext {
 		this.pauseGame();
 	}
 
+	private Integer getCurrentScore()
+	{
+		return this.num_ticks * 10;
+	}
 
 
 	@Override
 	public void tick_complete() 
 	{
+		this.num_ticks++;
+		this.score.setText(String.format(SCORE_FORMAT, this.getCurrentScore()));
 		this.tickHandler.postDelayed(this.game_logic, this.current_delay);
 		this.current_delay -= DECAY_RATE;
 	}
