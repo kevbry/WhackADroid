@@ -9,5 +9,4 @@ public interface GameContext
 {
 	public void game_ended();
 	public void tick_complete();
-	
 }

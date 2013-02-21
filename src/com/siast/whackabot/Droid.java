@@ -20,26 +20,29 @@ public class Droid implements View.OnClickListener
 	public Droid(ImageButton button)
 	{
 		this.button = button;
+		
 		button.setOnClickListener(this);
+		
 		this.happyAnimation = new RotateAnimation(0.0f,359.9f,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 		this.happyAnimation.setDuration(ANIMATION_DURATION);
-
 	}
 	
 	public void becomeAngry()
 	{
 		this.isAngry = true;
+		
 		this.button.setImageResource(MAD_IMG);
 	}
 	
 	public void becomeHappy()
 	{
-		this.isAngry = false;
-		this.button.setImageResource(HAPPY_IMG);
-		
-		this.button.startAnimation(this.happyAnimation);
-		
-		
+		if(this.isAngry)
+		{
+			this.isAngry = false;
+			
+			this.button.setImageResource(HAPPY_IMG);
+			this.button.startAnimation(this.happyAnimation);
+		}
 	}
 	
 	public boolean isAngry()
@@ -48,7 +51,8 @@ public class Droid implements View.OnClickListener
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(View v) 
+	{
 		if(!this.frozen)
 		{
 			this.becomeHappy();
@@ -58,7 +62,9 @@ public class Droid implements View.OnClickListener
 	public void reset()
 	{
 		this.isAngry = false;
+		
 		this.button.setImageResource(HAPPY_IMG);
+		
 		this.frozen=false;
 	}
 	
