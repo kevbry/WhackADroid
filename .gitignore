@@ -10,6 +10,8 @@ gen/
 
 local.properties
 
+Thumbs.db
+
 .classpath
 .project
 .settings
