@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+	<string name="enter_name">What\'s your name, soldier?</string>
     <string name="app_name">WhackABot</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
@@ -10,4 +10,9 @@
 	<string name="start">Start Game</string>
 	<string name="droid">Droid!</string>
 	<string name="lose_message">You lose, puny human</string>
+	<string name="score_submitted">Your score has been submitted</string>
+	<string name="submit_score">Submit your score</string>
+	<string name="score_title">You rock!</string>
+	<string name="submit_button">Submit</string>
+	<string name="cancel_button">Cancel</string>
 </resources>

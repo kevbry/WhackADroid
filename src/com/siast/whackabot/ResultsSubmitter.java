@@ -1,10 +1,10 @@
 package com.siast.whackabot;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -14,7 +14,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import android.os.AsyncTask;
 
-public class ResultsSubmitter extends AsyncTask<Void, Void, Void>
+public class ResultsSubmitter extends AsyncTask<Object, Void, Void>
 {
 	private static final String NAME_FIELD="entry.528351823";
 	private static final String SCORE_FIELD="entry.85424877";
@@ -25,21 +25,23 @@ public class ResultsSubmitter extends AsyncTask<Void, Void, Void>
 	private static final String FORM_URL="https://docs.google.com/forms/d/1wa2aH9l01MnejMOnFTONb9Lr6BUm9xS0MICcThNA82Y/formResponse";
 	
 	private String username;
-	private String score;
+	private int score;
+	private HighScoreSubmissionDelegate delegate;
 	
-	public ResultsSubmitter(String name, String score)
+	public ResultsSubmitter(String name, int score, HighScoreSubmissionDelegate delegate)
 	{
+		this.delegate = delegate;
 		this.username=name;
 		this.score=score;
 	}
 	
 	
 	@Override
-	protected Void doInBackground(Void... arg0) {
+	protected Void doInBackground(Object... arg0) {
 		// TODO Auto-generated method stub
 		try
 		{
-		this.submitVote();
+			this.submitVote();
 		}
 		catch(Exception e)
 		{
@@ -56,7 +58,7 @@ public class ResultsSubmitter extends AsyncTask<Void, Void, Void>
 		
 		List<BasicNameValuePair> results = new ArrayList<BasicNameValuePair>();
 		results.add(new BasicNameValuePair(NAME_FIELD, this.username));
-		results.add(new BasicNameValuePair(SCORE_FIELD, this.score));
+		results.add(new BasicNameValuePair(SCORE_FIELD, Integer.toString(this.score)));
 		
 		results.add(new BasicNameValuePair(DRAFT_RESPONSE_FIELD, "[]"));
 		results.add(new BasicNameValuePair(PAGE_HISTORY_FIELD, "0"));
@@ -65,7 +67,12 @@ public class ResultsSubmitter extends AsyncTask<Void, Void, Void>
 		post.setEntity(new UrlEncodedFormEntity(results));
 		
 		client.execute(post);
-		
+	}
+	
+	@Override
+	protected void onPostExecute(Void v)
+	{
+		this.delegate.scoreSubmitted();
 	}
 	
 }
